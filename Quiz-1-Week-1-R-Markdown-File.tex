@@ -1,0 +1,464 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Quiz 1 Week 1 R Markdown file},
+            pdfauthor={Me},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Quiz 1 Week 1 R Markdown file}
+\author{Me}
+\date{4/5/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{reading-in-the-data}{%
+\subsection{Reading in the data}\label{reading-in-the-data}}
+
+\hypertarget{reading-in-the-data-method-1}{%
+\subsubsection{Reading in the data method
+1}\label{reading-in-the-data-method-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/sadikafhameed/Documents/Coursera/R Programming /Week 1/Quiz 1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"hw1_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{reading-in-the-data-method-2}{%
+\subsubsection{Reading in the data method
+2}\label{reading-in-the-data-method-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{download.file}\NormalTok{(}\StringTok{'https://d396qusza40orc.cloudfront.net/rprog/data/quiz1_data.zip'}\NormalTok{, }\DataTypeTok{destfile =}\StringTok{"quizdat.zip"}\NormalTok{)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{unzip}\NormalTok{(}\StringTok{"quizdat.zip"}\NormalTok{)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"hw1_data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{in-the-dataset-provided-for-this-quiz-what-are-the-column-names-of-the-dataset}{%
+\subsection{In the dataset provided for this Quiz, what are the column
+names of the
+dataset?}\label{in-the-dataset-provided-for-this-quiz-what-are-the-column-names-of-the-dataset}}
+
+\hypertarget{meethod-1}{%
+\subsubsection{MEethod 1}\label{meethod-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"
+\end{verbatim}
+
+\hypertarget{method-2}{%
+\subsubsection{Method 2}\label{method-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+\hypertarget{method-3}{%
+\subsubsection{Method 3}\label{method-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"
+\end{verbatim}
+
+\hypertarget{extract-the-first-2-rows-of-the-data-frame-and-print-them-to-the-console.-what-does-the-output-look-like}{%
+\subsection{Extract the first 2 rows of the data frame and print them to
+the console. What does the output look
+like?}\label{extract-the-first-2-rows-of-the-data-frame-and-print-them-to-the-console.-what-does-the-output-look-like}}
+
+\hypertarget{method-1}{%
+\subsubsection{Method 1}\label{method-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+\end{verbatim}
+
+\hypertarget{method-2-1}{%
+\subsubsection{Method 2}\label{method-2-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat[}\DecValTok{152}\OperatorTok{:}\DecValTok{153}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Ozone Solar.R Wind Temp Month Day
+## 152    18     131  8.0   76     9  29
+## 153    20     223 11.5   68     9  30
+\end{verbatim}
+
+\hypertarget{method-3-1}{%
+\subsubsection{Method 3}\label{method-3-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(data, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Ozone Solar.R Wind Temp Month Day
+## 152    18     131  8.0   76     9  29
+## 153    20     223 11.5   68     9  30
+\end{verbatim}
+
+\hypertarget{how-many-observations-i.e.rows-are-in-this-data-frame}{%
+\subsection{How many observations (i.e.~rows) are in this data
+frame?}\label{how-many-observations-i.e.rows-are-in-this-data-frame}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 153
+\end{verbatim}
+
+\hypertarget{question-15-what-is-the-value-of-ozone-in-the-47th-row}{%
+\subsection{Question 15 What is the value of Ozone in the 47th
+row?}\label{question-15-what-is-the-value-of-ozone-in-the-47th-row}}
+
+\hypertarget{method-1-1}{%
+\subsubsection{Method 1}\label{method-1-1}}
+
+``` data{[}47, {]}
+
+\hypertarget{section}{%
+\subsubsection{}\label{section}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat}\OperatorTok{$}\NormalTok{Ozone[}\DecValTok{47}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21
+\end{verbatim}
+
+\hypertarget{how-many-missing-values-are-in-the-ozone-column-of-this-data-frame}{%
+\subsection{How many missing values are in the Ozone column of this data
+frame?}\label{how-many-missing-values-are-in-the-ozone-column-of-this-data-frame}}
+
+\hypertarget{method-1-2}{%
+\subsubsection{Method 1}\label{method-1-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dat}\OperatorTok{$}\NormalTok{Ozone))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 37
+\end{verbatim}
+
+\hypertarget{method-2-2}{%
+\subsubsection{Method 2}\label{method-2-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sub <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(data, }\KeywordTok{is.na}\NormalTok{(Ozone))}
+\KeywordTok{nrow}\NormalTok{(sub)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 37
+\end{verbatim}
+
+\hypertarget{method-3-2}{%
+\subsubsection{Method 3}\label{method-3-2}}
+
+\hypertarget{to-calculate-as-an-example-how-many-missing-values-there-are-in-total}{%
+\paragraph{To calculate as an example how many missing values there are
+in
+total}\label{to-calculate-as-an-example-how-many-missing-values-there-are-in-total}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(}\KeywordTok{is.na}\NormalTok{((data))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 44
+\end{verbatim}
+
+\hypertarget{to-calculate-only-for-ozone}{%
+\paragraph{To calculate only for
+Ozone}\label{to-calculate-only-for-ozone}}
+
+\begin{verbatim}
+datana <- subset(dat, is.na(Ozone))
+nrow(datana)
+
+## What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation.
+
+### Method 1
+\end{verbatim}
+
+datanotna \textless{}- subset(dat, !is.na(Ozone)) apply(datanotna, 2,
+mean)
+
+\hypertarget{method-2-3}{%
+\subsubsection{Method 2}\label{method-2-3}}
+
+``` mean(dat\$Ozone, na.rm = TRUE) \#\#\# Method 3
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sub =}\StringTok{ }\KeywordTok{subset}\NormalTok{(data, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Ozone), }\DataTypeTok{select =}\NormalTok{ Ozone)}
+\KeywordTok{apply}\NormalTok{(sub, }\DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Ozone 
+## 42.12931
+\end{verbatim}
+
+\hypertarget{extract-the-subset-of-rows-of-the-data-frame-where-ozone-values-are-above-31-and-temp-values-are-above-90.-what-is-the-mean-of-solar.r-in-this-subset}{%
+\subsection{Extract the subset of rows of the data frame where Ozone
+values are above 31 and Temp values are above 90. What is the mean of
+Solar.R in this
+subset?}\label{extract-the-subset-of-rows-of-the-data-frame-where-ozone-values-are-above-31-and-temp-values-are-above-90.-what-is-the-mean-of-solar.r-in-this-subset}}
+
+\hypertarget{method-1-3}{%
+\subsubsection{Method 1}\label{method-1-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sub <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(data, Ozone }\OperatorTok{>}\StringTok{ }\DecValTok{31} \OperatorTok{&}\StringTok{ }\NormalTok{Temp }\OperatorTok{>}\DecValTok{90}\NormalTok{, }\DataTypeTok{select =}\NormalTok{ Solar.R)}
+\KeywordTok{apply}\NormalTok{(sub, }\DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Solar.R 
+##   212.8
+\end{verbatim}
+
+\hypertarget{method-2-4}{%
+\subsubsection{Method 2}\label{method-2-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(dat[}\KeywordTok{which}\NormalTok{(dat}\OperatorTok{$}\NormalTok{Ozone }\OperatorTok{>}\DecValTok{31} \OperatorTok{&}\StringTok{ }\NormalTok{dat}\OperatorTok{$}\NormalTok{Temp }\OperatorTok{>}\StringTok{ }\DecValTok{90}\NormalTok{),]}\OperatorTok{$}\NormalTok{Solar.R)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 212.8
+\end{verbatim}
+
+\hypertarget{method-3-3}{%
+\subsubsection{Method 3}\label{method-3-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasub <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(dat, dat}\OperatorTok{$}\NormalTok{Ozone }\OperatorTok{>}\StringTok{ }\DecValTok{31} \OperatorTok{&}\StringTok{ }\NormalTok{dat}\OperatorTok{$}\NormalTok{Temp }\OperatorTok{>}\DecValTok{90}\NormalTok{, }\DataTypeTok{select =}\NormalTok{ Solar.R)}
+\KeywordTok{apply}\NormalTok{(datasub, }\DecValTok{2}\NormalTok{, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Solar.R 
+##   212.8
+\end{verbatim}
+
+\hypertarget{what-is-the-mean-of-temp-when-month-is-equal-to-6}{%
+\subsection{What is the mean of ``Temp'' when ``Month'' is equal to
+6?}\label{what-is-the-mean-of-temp-when-month-is-equal-to-6}}
+
+\hypertarget{method-1-4}{%
+\subsubsection{Method 1}\label{method-1-4}}
+
+\begin{verbatim}
+mean(dat[which(dat$Month == 6), ]$Temp)
+\end{verbatim}
+
+\hypertarget{method-2-5}{%
+\subsubsection{Method 2}\label{method-2-5}}
+
+\begin{verbatim}
+sub = subset(dat, Month == 6, select = Temp)
+apply(sub, 2, mean)
+\end{verbatim}
+
+\hypertarget{method-3-4}{%
+\subsubsection{Method 3}\label{method-3-4}}
+
+\begin{verbatim}
+datasub <- subset(data, data$Month == 6, select = Temp)
+apply(datasub, 2 , mean)
+\end{verbatim}
+
+\hypertarget{what-was-the-maximum-ozone-value-in-the-month-of-may-i.e.month-5}{%
+\subsection{What was the maximum ozone value in the month of May
+(i.e.~Month =
+5)}\label{what-was-the-maximum-ozone-value-in-the-month-of-may-i.e.month-5}}
+
+\hypertarget{method-1-5}{%
+\subsubsection{Method 1}\label{method-1-5}}
+
+\begin{verbatim}
+datasub <- subset(data, !is.na(Ozone) & data$Month ==5, select = Ozone)
+apply(datasub, 2, max)
+\end{verbatim}
+
+\hypertarget{method-2-6}{%
+\subsubsection{Method 2}\label{method-2-6}}
+
+\begin{verbatim}
+sub <- subset(data, Month == 5 & !is.na(Ozone), select = Ozone       )
+apply(sub, 2, max)
+\end{verbatim}
+
+\end{document}
